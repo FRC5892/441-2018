@@ -8,9 +8,11 @@
 package org.usfirst.frc.team441.robot;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team441.robot.commands.ExampleCommand;
@@ -28,20 +30,16 @@ public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem
 			= new ExampleSubsystem();
 	public static OI m_oi;
-	public static Drive drive;
+	public static DifferentialDrive drive;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	
+	public static Drive driveSubsystem;
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	public static Spark LeftBoxOne;
-	public static Spark LeftBoxTwo;
-	public static Spark LeftBoxThree;
-	public static Spark RightBoxOne;
-	public static Spark RightBoxTwo;
-	public static Spark RightBoxThree;
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
@@ -49,14 +47,11 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
-		LeftBoxOne    = new Spark(RobotMap.LeftBoxOne);
-		LeftBoxTwo    = new Spark(RobotMap.LeftBoxTwo);
-		LeftBoxThree  = new Spark(RobotMap.LeftBoxThree);
-		RightBoxOne	  = new Spark(RobotMap.RightBoxOne);
-		RightBoxTwo   = new Spark(RobotMap.RightBoxTwo);
-		RightBoxThree = new Spark(RobotMap.RightBoxThree);
-
-		drive = new Drive();
+		drive = new DifferentialDrive(new SpeedControllerGroup(
+				new Spark(RobotMap.LeftBoxOne), new Spark(RobotMap.LeftBoxTwo), new Spark(RobotMap.LeftBoxThree)), 
+				new SpeedControllerGroup(new Spark(RobotMap.RightBoxOne), new Spark(RobotMap.RightBoxTwo), new Spark(RobotMap.RightBoxThree)));
+		
+		driveSubsystem = new Drive();
 	}
 
 	/**

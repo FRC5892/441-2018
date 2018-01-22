@@ -1,5 +1,7 @@
 package org.usfirst.frc.team441.robot.subsystems;
 
+import org.usfirst.frc.team441.robot.commands.TeleopMovement;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,8 +13,8 @@ public class Drive extends Subsystem {
     // here. Call these from Commands.
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new TeleopMovement());
     }
+    
 }
 

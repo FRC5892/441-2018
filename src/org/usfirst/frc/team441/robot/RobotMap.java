@@ -28,4 +28,9 @@ public class RobotMap {
 	public static int RightBoxOne   = 3;
 	public static int RightBoxTwo   = 4;
 	public static int RightBoxThree = 5;
+	
+	public static int leftEncoder1 = 2;
+	public static int leftEncoder2 = 3;
+	public static int rightEncoder1 = 0;
+	public static int rightEncoder2 = 1;
 }

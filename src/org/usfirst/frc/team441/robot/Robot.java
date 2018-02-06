@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team441.robot.commands.ExampleCommand;
-import org.usfirst.frc.team441.robot.subsystems.Drive;
-import org.usfirst.frc.team441.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team441.robot.commands.auton.*;
+import org.usfirst.frc.team441.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,16 +42,24 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		// Order here is important!!!
 		
+		// Initialize OI
+		m_oi = new OI();
+		
+		// Initialize drivetrain
 		drive = new DifferentialDrive(new SpeedControllerGroup(
 				new Spark(RobotMap.LeftBoxOne), new Spark(RobotMap.LeftBoxTwo), new Spark(RobotMap.LeftBoxThree)), 
 				new SpeedControllerGroup(new Spark(RobotMap.RightBoxOne), new Spark(RobotMap.RightBoxTwo), new Spark(RobotMap.RightBoxThree)));
 		
+		// Initialize subsystems
 		driveSubsystem = new Drive();
+		
+		// Initialize autonomous modes
+		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_chooser.addObject("Drive Straight with Encoders", new AutonStraightDrive(0.5, 1000));
+		m_chooser.addObject("Drive Straight on Sheer Willpower", new AutonTankDrive(0.5, 0.5, 1000));
+		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
 	/**

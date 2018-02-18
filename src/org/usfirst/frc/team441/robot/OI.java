@@ -7,13 +7,23 @@
 
 package org.usfirst.frc.team441.robot;
 
+import org.usfirst.frc.team441.robot.commands.IntakeCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * interface to the commands and groups that allow control of the robot.
  */
 public class OI {
+	public OI(){
+		shoulderL.whileActive(new IntakeCommand(0));
+		shoulderR.whileActive(new IntakeCommand(1));
+		faceY.whileActive(new IntakeCommand(2));
+		faceX.whileActive(new IntakeCommand(3));
+	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -43,4 +53,9 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public Joystick pilot = new Joystick(1);
 	public Joystick copilot = new Joystick(2);
+	
+	public Button shoulderR = new JoystickButton(pilot, 6);
+	public Button shoulderL = new JoystickButton(pilot, 5);
+	public Button faceY = new JoystickButton(pilot, 4);
+	public Button faceX = new JoystickButton(pilot, 3);
 }

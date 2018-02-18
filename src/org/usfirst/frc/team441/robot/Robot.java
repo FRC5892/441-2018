@@ -9,6 +9,7 @@ package org.usfirst.frc.team441.robot;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,7 +36,7 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	
 	public static Drive driveSubsystem;
-
+	public static Intake intake;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -44,16 +45,17 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		// Order here is important!!!
 		
+		// Initialize subsystems
+		driveSubsystem = new Drive();
+		intake = new Intake();
+		
 		// Initialize OI
 		m_oi = new OI();
 		
 		// Initialize drivetrain
 		drive = new DifferentialDrive(new SpeedControllerGroup(
-				new Spark(RobotMap.LeftBoxOne), new Spark(RobotMap.LeftBoxTwo), new Spark(RobotMap.LeftBoxThree)), 
-				new SpeedControllerGroup(new Spark(RobotMap.RightBoxOne), new Spark(RobotMap.RightBoxTwo), new Spark(RobotMap.RightBoxThree)));
-		
-		// Initialize subsystems
-		driveSubsystem = new Drive();
+				new Spark(RobotMap.LeftBoxOne), new Spark(RobotMap.LeftBoxTwo), new Talon(RobotMap.LeftBoxThree)), 
+				new SpeedControllerGroup(new Spark(RobotMap.RightBoxOne), new Spark(RobotMap.RightBoxTwo), new Talon(RobotMap.RightBoxThree)));
 		
 		// Initialize autonomous modes
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
@@ -122,6 +124,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		System.out.println("ded");
 	}
 
 	/**

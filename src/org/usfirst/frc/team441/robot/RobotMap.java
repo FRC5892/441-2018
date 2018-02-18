@@ -32,6 +32,10 @@ public class RobotMap {
 	public static int rightInt = 6;
 	public static int leftInt = 7;
 	
+	public static int  leftandRightWingWinch = 8;
+	public static int  LeftAndRightWingLift = 9; 
+			
+	
 	public static int leftEncoder1 = 2;
 	public static int leftEncoder2 = 3;
 	public static int rightEncoder1 = 0;

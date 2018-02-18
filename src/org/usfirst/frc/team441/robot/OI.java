@@ -58,4 +58,5 @@ public class OI {
 	public Button shoulderL = new JoystickButton(pilot, 5);
 	public Button faceY = new JoystickButton(pilot, 4);
 	public Button faceX = new JoystickButton(pilot, 3);
+	public Button faceA = new JoystickButton(pilot, 1);
 }

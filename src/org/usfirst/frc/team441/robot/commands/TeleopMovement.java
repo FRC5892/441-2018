@@ -15,8 +15,8 @@ public class TeleopMovement extends Command {
 	@Override
 	protected void execute() {
 		Robot.drive.arcadeDrive(-Robot.m_oi.pilot.getRawAxis(1), Robot.m_oi.pilot.getRawAxis(4));
-		SmartDashboard.putNumber("Left Encoder", Robot.driveSubsystem.getLeft());
-		SmartDashboard.putNumber("Right Encoder", Robot.driveSubsystem.getRight());
+		//SmartDashboard.putNumber("Left Encoder", Robot.driveSubsystem.getLeft());
+		//SmartDashboard.putNumber("Right Encoder", Robot.driveSubsystem.getRight());
 	}
 
 	@Override

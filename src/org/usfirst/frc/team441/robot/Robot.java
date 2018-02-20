@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
 	
 	public static Drive driveSubsystem;
 	public static Intake intake;
+	public static Wing wing;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot {
 		// Initialize subsystems
 		driveSubsystem = new Drive();
 		intake = new Intake();
+		wing = new Wing();
 		
 		// Initialize OI
 		m_oi = new OI();
@@ -59,8 +61,8 @@ public class Robot extends TimedRobot {
 		
 		// Initialize autonomous modes
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
-		m_chooser.addObject("Drive Straight with Encoders", new AutonStraightDrive(0.5, 1000));
-		m_chooser.addObject("Drive Straight on Sheer Willpower", new AutonTankDrive(0.5, 0.5, 1000));
+		//m_chooser.addObject("Drive Straight with Encoders", new AutonStraightDrive(0.5, 1000));
+		//m_chooser.addObject("Drive Straight on Sheer Willpower", new AutonTankDrive(0.5, 0.5, 1000));
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
@@ -81,7 +83,7 @@ public class Robot extends TimedRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
+	 * between different aSutonomous modes using the dashboard. The sendable
 	 * chooser code works with the Java SmartDashboard. If you prefer the
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro

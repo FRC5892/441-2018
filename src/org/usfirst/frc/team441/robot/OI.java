@@ -7,8 +7,10 @@
 
 package org.usfirst.frc.team441.robot;
 
+import org.usfirst.frc.team441.robot.commands.DriveMultSetter;
 import org.usfirst.frc.team441.robot.commands.IntakeCommand;
 import org.usfirst.frc.team441.robot.commands.OuttakeCommand;
+import org.usfirst.frc.team441.robot.commands.TeleopMovement;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -20,10 +22,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	public OI(){
-//		shoulderL.whileActive(new IntakeCommand(0));
-//		shoulderR.whileActive(new OuttakeCommand());
-		//faceY.whileActive(new IntakeCommand(2));
-		//faceX.whileActive(new IntakeCommand(3));
+		shoulderL.whileActive(new IntakeCommand(0));
+		shoulderR.whileActive(new OuttakeCommand());
+		faceY.whenActive(new DriveMultSetter(1));
+		faceA.whenActive(new DriveMultSetter(-1));
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
